@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import techmart.libs.DBConnection;
 
 public class RegisterServlet extends HttpServlet {
 
@@ -44,14 +47,8 @@ public class RegisterServlet extends HttpServlet {
         String REGISTER_STATEMENT = "INSERT INTO users(name, email, password) VALUES(?,?,?)";
         
         try {
-            //        load jdbc driver
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException ex) {
-            pw.println(ex.getMessage());
-        }
-        
-        try {
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/techmart", "root", "");
+            Connection conn;
+            conn = DBConnection.initializeDatabase();
             PreparedStatement ps = conn.prepareStatement(REGISTER_STATEMENT);
             
             ps.setString(1, name);
@@ -68,6 +65,8 @@ public class RegisterServlet extends HttpServlet {
             
         } catch (SQLException ex) {
             pw.println(ex.getMessage());
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(RegisterServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }
