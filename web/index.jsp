@@ -6,9 +6,9 @@
         <jsp:include page="./components/headers.jsp" />
         <title>TechMart</title>
     </head>
-    <body>
+    <body class="pt-7">
         <jsp:include page="./components/navbar.jsp" />
-        <h1 class="text-center">Welcome To TechMart!</h1>
-        <a class="btn btn-primary" href="/tech-mart/register.jsp">Register</a>
+        <h1 class="text-center pt-7">Welcome To TechMart!</h1>
+        <!--Home Page Content-->
     </body>
 </html>
