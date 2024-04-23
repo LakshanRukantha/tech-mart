@@ -1,9 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <body>
-        <nav class="navbar navbar-expand-lg fixed-top w-full bg-body-tertiary">
-        <div class="container d-flex justify-content-between px-lg-4">
+        <nav class="navbar navbar-expand-lg fixed-top w-full shadow-sm bg-body-tertiary">
+        <div class="container px-lg-4">
           <a class="navbar-brand" href="index.php"
             >TechMart</a>
           <button
@@ -17,13 +14,24 @@
           >
             <span class="navbar-toggler-icon"></span>
           </button>
-            <div>
-                <div class="d-flex items-center justify-center gap-2">
-                    <button class="btn btn-primary">Sign In</button>
-                    <button class="btn btn-primary">Sign Up</button>
-                </div>
+          <div class="collapse md:d-flex col navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav flex-grow-1 mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a
+                  class="nav-link active"
+                  aria-current="page"
+                  href="./index.php"
+                  >Home</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./about.php">About Us</a>
+              </li>
+            </ul>
+            <div class="d-flex gap-2 align-items-center">
+                <a href="#" class="btn btn-primary">Sign In</a>
+                <a href="./register.jsp" class="btn btn-primary">Register</a>
             </div>
+          </div>
         </div>
-      </nav>
-    </body>
-</html>
+</nav>
