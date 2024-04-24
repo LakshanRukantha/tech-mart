@@ -26,7 +26,7 @@
           >
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="./about.php">About Us</a>
+          <a class="nav-link" href="./about.jsp">About Us</a>
         </li>
       </ul>
       <div class="d-flex gap-2 align-items-center">
