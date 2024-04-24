@@ -37,3 +37,7 @@ td {
   white-space: nowrap;
   word-break: keep-all;
 }
+
+.sign-in-form, .register-form{
+    max-width: 600px;
+}
