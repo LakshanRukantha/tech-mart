@@ -38,7 +38,6 @@ td {
   word-break: keep-all;
 }
 
-/*for signin and register pages*/
-.sign-in-form , .register-form{
+.sign-in-form, .register-form{
     max-width: 600px;
 }
