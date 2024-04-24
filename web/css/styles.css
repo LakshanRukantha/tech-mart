@@ -8,23 +8,32 @@
 }
 
 ::-webkit-input-placeholder {
-   font-style: italic;
+  font-style: italic;
 }
 :-moz-placeholder {
-   font-style: italic;  
+  font-style: italic;
 }
 ::-moz-placeholder {
-   font-style: italic;  
+  font-style: italic;
 }
-:-ms-input-placeholder {  
-   font-style: italic; 
+:-ms-input-placeholder {
+  font-style: italic;
 }
 
 .pt-7 {
   padding-top: 4rem;
 }
 
-th,td{
-    white-space: nowrap;
-    word-break: keep-all;
+.bg-brand-color {
+  background-color: #f97316;
+}
+
+.text-brand-color {
+  color: #f97316;
+}
+
+th,
+td {
+  white-space: nowrap;
+  word-break: keep-all;
 }

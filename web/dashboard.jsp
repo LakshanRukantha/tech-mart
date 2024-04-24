@@ -33,7 +33,14 @@
                   <td>LKR 402500.00</td>
                   <td>Kasun Sampath</td>
                   <td>Colombo, Sri Lanka</td>
-                  <td><a href="#" class="btn btn-primary">Ship Order</a></td>
+                  <td>
+                    <a
+                      href="#"
+                      class="btn btn-primary d-flex flex-row align-items-center gap-1"
+                      ><i class="fa-solid fa-truck-arrow-right"></i>Ship
+                      Order</a
+                    >
+                  </td>
                 </tr>
                 <tr>
                   <td>1234</td>
@@ -41,7 +48,14 @@
                   <td>LKR 221500.00</td>
                   <td>Lakshan Rukantha</td>
                   <td>Colombo, Sri Lanka</td>
-                  <td><a href="#" class="btn btn-primary">Ship Order</a></td>
+                  <td>
+                    <a
+                      href="#"
+                      class="btn btn-primary d-flex flex-row align-items-center gap-1"
+                      ><i class="fa-solid fa-truck-arrow-right"></i>Ship
+                      Order</a
+                    >
+                  </td>
                 </tr>
                 <tr>
                   <td>1234</td>
@@ -49,7 +63,14 @@
                   <td>LKR 221500.00</td>
                   <td>Lakshan Rukantha</td>
                   <td>Colombo, Sri Lanka</td>
-                  <td><a href="#" class="btn btn-primary">Ship Order</a></td>
+                  <td>
+                    <a
+                      href="#"
+                      class="btn btn-primary d-flex flex-row align-items-center gap-1"
+                      ><i class="fa-solid fa-truck-arrow-right"></i>Ship
+                      Order</a
+                    >
+                  </td>
                 </tr>
                 <tr>
                   <td>1234</td>
@@ -57,7 +78,14 @@
                   <td>LKR 221500.00</td>
                   <td>Lakshan Rukantha</td>
                   <td>Colombo, Sri Lanka</td>
-                  <td><a href="#" class="btn btn-primary">Ship Order</a></td>
+                  <td>
+                    <a
+                      href="#"
+                      class="btn btn-primary d-flex flex-row align-items-center gap-1"
+                      ><i class="fa-solid fa-truck-arrow-right"></i>Ship
+                      Order</a
+                    >
+                  </td>
                 </tr>
                 <tr>
                   <td>1234</td>
@@ -65,7 +93,14 @@
                   <td>LKR 221500.00</td>
                   <td>Lakshan Rukantha</td>
                   <td>Colombo, Sri Lanka</td>
-                  <td><a href="#" class="btn btn-primary">Ship Order</a></td>
+                  <td>
+                    <a
+                      href="#"
+                      class="btn btn-primary d-flex flex-row align-items-center gap-1"
+                      ><i class="fa-solid fa-truck-arrow-right"></i>Ship
+                      Order</a
+                    >
+                  </td>
                 </tr>
                 <tr>
                   <td>1234</td>
@@ -73,7 +108,14 @@
                   <td>LKR 221500.00</td>
                   <td>Lakshan Rukantha</td>
                   <td>Colombo, Sri Lanka</td>
-                  <td><a href="#" class="btn btn-primary">Ship Order</a></td>
+                  <td>
+                    <a
+                      href="#"
+                      class="btn btn-primary d-flex flex-row align-items-center gap-1"
+                      ><i class="fa-solid fa-truck-arrow-right"></i>Ship
+                      Order</a
+                    >
+                  </td>
                 </tr>
                 <tr>
                   <td>1234</td>
@@ -81,7 +123,14 @@
                   <td>LKR 221500.00</td>
                   <td>Lakshan Rukantha</td>
                   <td>Colombo, Sri Lanka</td>
-                  <td><a href="#" class="btn btn-primary">Ship Order</a></td>
+                  <td>
+                    <a
+                      href="#"
+                      class="btn btn-primary d-flex flex-row align-items-center gap-1"
+                      ><i class="fa-solid fa-truck-arrow-right"></i>Ship
+                      Order</a
+                    >
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -168,8 +217,11 @@
                 placeholder="Enter Quantity..."
               />
             </div>
-            <button type="submit" class="btn btn-primary w-100">
-              Add Product
+            <button
+              type="submit"
+              class="btn btn-primary w-100 d-flex flex-row align-items-center justify-content-center gap-1"
+            >
+              <i class="fa-solid fa-plus"></i>Add Product
             </button>
           </form>
         </div>
