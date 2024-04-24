@@ -29,7 +29,15 @@
           <a class="nav-link" href="./about.jsp">About Us</a>
         </li>
       </ul>
-      <div class="d-flex gap-2 align-items-center">
+      <div
+        class="d-flex flex-lg-row flex-column gap-2 align-items-lg-center align-items-start"
+        style="padding-left: 0"
+      >
+        <a
+          href="./cart.jsp"
+          class="btn btn-outline-warning text-brand-color d-flex align-items-center gap-2"
+          ><i class="fa-solid fa-cart-plus fs-4"></i>Cart</a
+        >
         <a href="#" class="btn btn-primary">Sign In</a>
         <a href="./register.jsp" class="btn btn-primary">Register</a>
       </div>
