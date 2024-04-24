@@ -10,7 +10,7 @@
     <jsp:include page="./components/navbar.jsp" />
     <div class="container pt-7">
       <div class="row">
-        <div class="col-12 col-lg-8">
+        <div class="col-12 col-lg-8 mb-4">
           <h1>Active Orders</h1>
           <div class="table-responsive">
             <table
@@ -136,7 +136,7 @@
             </table>
           </div>
         </div>
-        <div class="col-12 col-lg-4">
+        <div class="col-12 col-lg-4 mb-4">
           <h1>Create Product</h1>
           <form>
             <div class="mb-3">
@@ -224,6 +224,92 @@
               <i class="fa-solid fa-plus"></i>Add Product
             </button>
           </form>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 col-lg-6 mb-4">
+          <h1>Product Stock</h1>
+          <div class="table-responsive">
+            <table
+              class="table table-bordered border-primary-subtle table-hover table-condensed"
+            >
+              <thead>
+                <tr>
+                  <th scope="col">Product ID</th>
+                  <th scope="col">Product Name</th>
+                  <th scope="col">Price</th>
+                  <th scope="col">Quantity</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody class="table-group-divider">
+                <tr>
+                  <td>1234</td>
+                  <td>Iphone 15 Pro Max</td>
+                  <td>402500.00</td>
+                  <td>22</td>
+                  <td class="d-flex flex-row align-items-center gap-2">
+                    <a href="#" class="btn btn-primary"
+                      ><i class="fa-regular fa-pen-to-square"></i></a
+                    ><a href="#" class="btn btn-danger"
+                      ><i class="fa-regular fa-trash-can"></i
+                    ></a>
+                  </td>
+                </tr>
+                <tr>
+                  <td>1234</td>
+                  <td>Iphone 13 Pro</td>
+                  <td>202500.00</td>
+                  <td>16</td>
+                  <td class="d-flex flex-row align-items-center gap-2">
+                    <a href="#" class="btn btn-primary"
+                      ><i class="fa-regular fa-pen-to-square"></i></a
+                    ><a href="#" class="btn btn-danger"
+                      ><i class="fa-regular fa-trash-can"></i
+                    ></a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="col-12 col-lg-6 mb-4">
+          <h1>Current Users</h1>
+          <div class="table-responsive">
+            <table
+              class="table table-bordered border-primary-subtle table-hover table-condensed"
+            >
+              <thead>
+                <tr>
+                  <th scope="col">User ID</th>
+                  <th scope="col">User Email</th>
+                  <th scope="col">Name</th>
+                </tr>
+              </thead>
+              <tbody class="table-group-divider">
+                <tr>
+                  <td>10</td>
+                  <td>lakshan@gmail.com</td>
+                  <td>Lakshan Rukantha</td>
+                  <td>
+                    <a href="#" class="btn btn-danger"
+                      ><i class="fa-regular fa-trash-can"></i
+                    ></a>
+                  </td>
+                </tr>
+                <tr>
+                  <td>12</td>
+                  <td>kasun@gmail.com</td>
+                  <td>Kasun Sampath</td>
+                  <td>
+                    <a href="#" class="btn btn-danger"
+                      ><i class="fa-regular fa-trash-can"></i
+                    ></a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
