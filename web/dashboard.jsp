@@ -9,8 +9,7 @@
   <body>
     <jsp:include page="./components/navbar.jsp" />
     <div class="container pt-7">
-        <div class="mt-2" id="createProductMessage">
-        </div>
+      <div class="mt-2" id="createProductMessage"></div>
       <div class="row">
         <div class="col-12 col-lg-8 mb-4">
           <h1>Active Orders</h1>
@@ -140,7 +139,11 @@
         </div>
         <div class="col-12 col-lg-4 mb-4">
           <h1>Create Product</h1>
-          <form id="createProductForm" method="POST" enctype="multipart/form-data">
+          <form
+            id="createProductForm"
+            method="POST"
+            enctype="multipart/form-data"
+          >
             <div class="mb-3">
               <label for="product-name" class="form-label fw-semibold"
                 >Product Name</label
@@ -175,7 +178,6 @@
                 name="productImage"
                 id="productImage"
                 accept="image/*"
-                required
               />
             </div>
             <div class="mb-3">
@@ -187,14 +189,14 @@
                 id="productCategory"
                 name="productCategory"
               >
-                <option selected>Select Category</option>
+                <option selected value="0">Select Category</option>
                 <option value="1">Mobile Phones</option>
-                <option value="2">PC Components</option>
-                <option value="3">Sounds</option>
-                <option value="4">Headphones</option>
-                <option value="5">Laptops</option>
-                <option value="6">Cameras</option>
-                <option value="7"></option>
+                <option value="2">Laptops</option>
+                <option value="3">Chargers & Cables</option>
+                <option value="4">Wearables</option>
+                <option value="5">Cameras</option>
+                <option value="6">Sounds</option>
+                <option value="7">Others</option>
               </select>
             </div>
             <div class="mb-3">

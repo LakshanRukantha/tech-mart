@@ -11,10 +11,18 @@ $(document).ready(function () {
       contentType: false,
       processData: false,
       success: function (response) {
-        $("#createProductMessage").html('<div class="alert alert-success" role="alert">' + response + '</div>');
+        $("#createProductMessage").html(
+          '<div class="alert alert-success alert-dismissible fade show" role="alert">' +
+            response +
+            '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>'
+        );
       },
       error: function (xhr, status, error) {
-        $("#createProductMessage").html('<div class="alert alert-danger" role="alert">Error: ' + xhr.responseText + '</div>');
+        $("#createProductMessage").html(
+          '<div class="alert alert-danger alert-dismissible fade show" role="alert">' +
+            xhr.responseText +
+            '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>'
+        );
       },
     });
   });
