@@ -9,6 +9,8 @@
   <body>
     <jsp:include page="./components/navbar.jsp" />
     <div class="container pt-7">
+        <div class="mt-2" id="createProductMessage">
+        </div>
       <div class="row">
         <div class="col-12 col-lg-8 mb-4">
           <h1>Active Orders</h1>
@@ -138,7 +140,7 @@
         </div>
         <div class="col-12 col-lg-4 mb-4">
           <h1>Create Product</h1>
-          <form>
+          <form id="createProductForm" method="POST" enctype="multipart/form-data">
             <div class="mb-3">
               <label for="product-name" class="form-label fw-semibold"
                 >Product Name</label
@@ -186,12 +188,12 @@
                 name="productCategory"
               >
                 <option selected>Select Category</option>
-                <option value="1"></option>
-                <option value="2"></option>
-                <option value="3"></option>
-                <option value="4"></option>
-                <option value="5"></option>
-                <option value="6"></option>
+                <option value="1">Mobile Phones</option>
+                <option value="2">PC Components</option>
+                <option value="3">Sounds</option>
+                <option value="4">Headphones</option>
+                <option value="5">Laptops</option>
+                <option value="6">Cameras</option>
                 <option value="7"></option>
               </select>
             </div>
