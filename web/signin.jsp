@@ -11,11 +11,11 @@
 
         <div class="container pt-7">
             <div class="d-flex flex-column w-100 align-items-center justify-content-center px-1 py-0 mt-3 ">
-            <form class="sign-in-form form bg-body-light rounded-2 shadow px-3 py-4 d-flex align-self-center flex-column justify-content-center w-100 mx-auto my-auto login-form" id="loginAsAdminForm" action="./admin_login_handler.jsp" method="post">
+            <form id=signInForm class="sign-in-form form bg-body-light rounded-2 shadow px-3 py-4 d-flex align-self-center flex-column justify-content-center w-100 mx-auto my-auto login-form" id="loginAsAdminForm" action="./admin_login_handler.jsp" method="post">
             <h2 class="text-center mb-2 h1">Sign <span>in</span></h2>
             <div class="mb-3">
-                <label for="username" class="form-label">Username</label>
-                <input type="text" class="form-control" id="username" name="username" placeholder="Enter Username...">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email...">
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label">Password</label>

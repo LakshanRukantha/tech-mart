@@ -16,3 +16,6 @@
   src="https://kit.fontawesome.com/0a73ff5289.js"
   crossorigin="anonymous"
 ></script>
+<script
+    src="./js/sign-in.js">
+</script>
