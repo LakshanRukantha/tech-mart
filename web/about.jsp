@@ -63,7 +63,7 @@
                          <div class=" profile-img  pt-4">
                           <img 
                             class="card-img-top rounded-circle w-50 " 
-                            src="/tech-mart/images/Developers/lakshan-rukantha.jpg"  
+                            src="/tech-mart/images/developers/lakshan-rukantha.jpg"  
                             alt="Lakshan Rukantha">
                          </div>
                         
@@ -128,7 +128,7 @@
                  <div class=" profile-img pt-4">
                   <img 
                     class="card-img-top rounded-circle w-50" 
-                    src="/tech-mart/images/Developers/sandaru-tharaka.JPG" 
+                    src="/tech-mart/images/developers/sandaru-tharaka.JPG" 
                     alt="sandaru-tharaka ">
                  </div>
  
@@ -196,7 +196,7 @@
                  <div class=" profile-img pt-4">
                   <img 
                     class="card-img-top rounded-circle w-50" 
-                    src="/tech-mart/images/Developers/meedum-shanika.jpg" 
+                    src="/tech-mart/images/developers/meedum-shanika.jpg" 
                     alt="Meedum Shamika">
                  </div>
  
@@ -266,7 +266,7 @@
                    <div class=" profile-img pt-4">
                     <img 
                       class="card-img-top rounded-circle w-50" 
-                      src="/tech-mart/images/Developers/bethmina-sithija.jpg" 
+                      src="/tech-mart/images/developers/bethmina-sithija.jpg" 
                       alt="Bethmina Sithija ">
                    </div>
    
@@ -334,7 +334,7 @@
                  <div class=" profile-img pt-4">
                   <img 
                     class="card-img-top rounded-circle w-50" 
-                    src="/tech-mart/images/Developers/hiruni-prarthana.jpg" 
+                    src="/tech-mart/images/developers/hiruni-prarthana.jpg" 
                     alt="Hiruni Prarthana">
                  </div>
  
@@ -402,7 +402,7 @@
                  <div class=" profile-img pt-4">
                   <img 
                     class="card-img-top rounded-circle w-50" 
-                    src="/tech-mart/images/Developers/ramudi- wijethunga.jpg" 
+                    src="/tech-mart/images/developers/ramudi-wijethunga.jpg" 
                     alt="Ramudi Wijethunga ">
                  </div>
  
@@ -471,7 +471,7 @@
                  <div class=" profile-img pt-4">
                   <img 
                     class="card-img-top rounded-circle w-50" 
-                    src="/tech-mart/images/Developers/sharmila-perera.jpg" 
+                    src="/tech-mart/images/developers/sharmila-perera.jpg" 
                     alt="Sharmila Perera ">
                  </div>
  
@@ -540,7 +540,7 @@
                  <div class=" profile-img pt-4">
                   <img 
                     class="card-img-top rounded-circle w-50" 
-                    src="/tech-mart/images/Developers/sandun-sandeepa.jpg" 
+                    src="/tech-mart/images/developers/sandun-sandeepa.jpg" 
                     alt="Sandun Sandeepa ">
                   </div>
  
@@ -609,7 +609,7 @@
                  <div class=" profile-img pt-4">
                   <img 
                     class="card-img-top rounded-circle w-50" 
-                    src="/tech-mart/images/Developers/charith- wijesinghe.jpg" 
+                    src="/tech-mart/images/developers/charith-wijesinghe.jpg" 
                     alt="Charith Wijesinghe">
                  </div>
  
@@ -679,7 +679,7 @@
                  <div class=" profile-img pt-4">
                   <img 
                     class="card-img-top rounded-circle w-50" 
-                    src="/tech-mart/images/Developers/thilakshana- dilshan.jpg" 
+                    src="/tech-mart/images/developers/thilakshana-dilshan.jpg" 
                     alt="Thilakshana Dilshan ">
                  </div>
  
