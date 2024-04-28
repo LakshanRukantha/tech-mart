@@ -1,3 +1,5 @@
+<%@page import="techmart.utils.AdminAuth"%>
+<%@page import="techmart.utils.UserUtil"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.sql.*"%>
 <%@page import="techmart.utils.DBConnection"%>
@@ -11,7 +13,19 @@
     <body>
         <jsp:include page="./components/navbar.jsp" />
         <div class="container pt-7">
+            <%
+                HttpSession userSession = request.getSession();
+                String userEmail = UserUtil.getUserEmail(userSession);
+                String userName = null;
+
+                if (userEmail == null || !AdminAuth.isAdminUser(userSession)) {
+                    response.sendRedirect("register.jsp");
+                } else {
+                    userName = UserUtil.getUserName(userEmail);
+                }
+            %>
             <div class="mt-2" id="createProductMessage"></div>
+            <h2 class="alert alert-secondary d-flex flex-wrap align-items-center justify-content-between">Dashboard <span class="fs-3"><span class="">Welcome, </span><%= userName%></span></h2>
             <div class="row">
                 <div class="col-12 col-lg-8 mb-4">
                     <h1>Product Stock</h1>
@@ -283,7 +297,7 @@
                             </thead>
                             <tbody class="table-group-divider">
                                 <%
-                                    String GET_USERS_STATEMENT = "SELECT * FROM users";
+                                    String GET_USERS_STATEMENT = "SELECT * FROM users ORDER BY user_id ASC";
                                     try {
                                         Connection conn;
                                         ResultSet rs = null;
@@ -303,9 +317,11 @@
                                     <td><%= name%></td>
                                     <td><%= role%></td>
                                     <td>
-                                        <a href="#" class="btn btn-danger"
-                                           ><i class="fa-regular fa-trash-can"></i
-                                            ></a>
+                                        <a href="DeleteUser?user_id=<%= userId%>" class="btn btn-danger"
+                                           onclick="return confirm('Are you sure you want to delete this user?');">
+                                            <i class="fa-regular fa-trash-can"></i>
+                                        </a>
+
                                     </td>
                                 </tr>
                                 <%                                        }
