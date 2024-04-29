@@ -57,7 +57,7 @@ public class SignInServlet extends HttpServlet {
             ResultSet result=ps.executeQuery();
             if(result.next()){
                 HttpSession session=request.getSession();
-                session.setAttribute(email, email);
+                session.setAttribute("email", email);
                 session.setMaxInactiveInterval(86400);
                 response.sendRedirect("index.jsp");
             }else{
