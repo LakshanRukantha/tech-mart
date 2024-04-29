@@ -45,8 +45,10 @@ public class CreateProductServlet extends HttpServlet {
     String uploadDir = getServletContext().getRealPath("/") + "images/";
 
     // Write the file to the destination directory
-    if (name.isEmpty() || description.isEmpty() || price.isEmpty() || quantity.isEmpty() || part.getSize() <= 0 || category_id.isEmpty()) {
-    response.sendError(0, "Missing Some Values");
+    if (name.isEmpty() || description.isEmpty() || price.isEmpty() || quantity.isEmpty() || part.getSize() <= 0 || (Integer.parseInt(category_id) < 1 || Integer.parseInt(category_id) > 7)) {
+    response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+    response.getWriter().println("Error: Missing or invalid some product values!");
+    return;
     } else {
         File uploadDirFile = new File(uploadDir);
         if (!uploadDirFile.exists()) {
