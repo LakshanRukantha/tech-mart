@@ -1,6 +1,6 @@
 $(document).ready(function () {
   $("#createProductForm").submit(function (event) {
-    event.preventDefault(); // Prevent the form from submitting normally
+    event.preventDefault();
 
     var formData = new FormData(this);
     $.ajax({
@@ -11,14 +11,14 @@ $(document).ready(function () {
       contentType: false,
       processData: false,
       success: function (response) {
-        $("#createProductMessage").html(
+        $("#messageBox").html(
           '<div class="alert alert-success alert-dismissible fade show" role="alert">' +
             response +
             '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>'
         );
       },
       error: function (xhr, status, error) {
-        $("#createProductMessage").html(
+        $("#messageBox").html(
           '<div class="alert alert-danger alert-dismissible fade show" role="alert">' +
             xhr.responseText +
             '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>'
