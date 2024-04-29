@@ -1,6 +1,6 @@
 <%@page import="techmart.utils.UserUtil" %>
 <%@page import="java.sql.*" %>
-<%@page import="techmart.libs.DBConnection" %>
+<%@page import="techmart.utils.DBConnection" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -64,11 +64,7 @@
             </div>
             </form>
         </div>
-        </div>
-          
-            
-        
-        
+        </div>    
 </body>
 </html>
 
