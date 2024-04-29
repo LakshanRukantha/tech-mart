@@ -37,7 +37,7 @@
                                 <tr>
                                     <th scope="col">Product ID</th>
                                     <th scope="col">Product Name</th>
-                                    <th scope="col">Price</th>
+                                    <th scope="col">Price (LKR)</th>
                                     <th scope="col">Quantity</th>
                                     <th scope="col">Action</th>
                                 </tr>
@@ -61,8 +61,14 @@
                                 <tr>
                                     <td><%= productId%></td>
                                     <td><%= name%></td>
-                                    <td>LKR: <%= price%></td>
-                                    <td><%= quantity%></td>
+                                    <td><%= price%></td>
+                                    <td>
+                                        <% if (Integer.parseInt(quantity) == 0) { %>
+                                        Out Of Stock
+                                        <% } else {%>
+                                        <%= quantity%>
+                                        <% }%>
+                                    </td>
                                     <td class="d-flex flex-row align-items-center gap-2">
                                         <button
                                             type="button"
@@ -194,9 +200,10 @@
                                             </div>
                                         </div>
 
-                                        <a href="#" class="btn btn-danger"
-                                           ><i class="fa-regular fa-trash-can"></i
-                                            ></a>
+                                        <a href="DeleteProductServlet?product_id=<%= productId%>" class="btn btn-danger"
+                                           onclick="return confirm('Are you sure you want to delete <%= name%>?');">
+                                            <i class="fa-regular fa-trash-can"></i>
+                                        </a>
                                     </td>
                                 </tr>
                                 <% }
@@ -446,7 +453,6 @@
                                            onclick="return confirm('Are you sure you want to delete this user?');">
                                             <i class="fa-regular fa-trash-can"></i>
                                         </a>
-
                                     </td>
                                 </tr>
                                 <%                                        }
