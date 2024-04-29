@@ -1,4 +1,8 @@
+<%@page import="techmart.utils.UserUtil"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.sql.*"%>
+<%@page import="techmart.utils.DBConnection"%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -10,7 +14,7 @@
     function displayErrorMessage(message) {
         const registerAlertMessageArea = document.getElementById("registerAlertMessageArea");
         if (message.trim() !== '') {
-            registerAlertMessageArea.classList.add("alert","alert-danger", "mt-4", "mb-0" ,"alert-dismissible");
+            registerAlertMessageArea.classList.add("alert","alert-danger", "mt-4", "mb-0");
             registerAlertMessageArea.innerText = message;
         } else {
             registerAlertMessageArea.innerText = ''; // Clear the message if it's empty
@@ -24,6 +28,16 @@
     <body>
         <jsp:include page="./components/navbar.jsp" />
         <div class="container pt-7">
+             <%
+    // Check if the user is already logged in
+    HttpSession userSession = request.getSession();
+    String userEmail = UserUtil.getUserEmail(userSession);
+
+    if (userEmail != null) {
+        // User is already logged in, redirect to index.jsp
+        response.sendRedirect("index.jsp");
+    }
+%>
             <div class="d-flex flex-column w-100 align-items-center justify-content-center px-1 py-0 mt-3">
             <form id="registerform"class="sign-in-form form bg-body-light rounded-2 shadow px-3 py-4 d-flex align-self-center flex-column justify-content-center w-100 mx-auto my-auto login-form"  action="RegisterServlet" method="Post">
             <h2 class="text-center mb-2 h1">Register</h2>
