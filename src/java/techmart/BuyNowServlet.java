@@ -54,7 +54,6 @@ public class BuyNowServlet extends HttpServlet {
                 }
 
                 request.setAttribute("product", product);
-                System.out.println(product.getProductName());
                 RequestDispatcher dispatcher = request.getRequestDispatcher("checkout.jsp");
                 dispatcher.forward(request, response);
 

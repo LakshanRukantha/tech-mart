@@ -1,7 +1,8 @@
 <%@page import="techmart.Product"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
-
+<%@page import="java.sql.*"%>
+<%@page import="techmart.utils.DBConnection"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -99,12 +100,45 @@
                 <% for (Product product : itemList) {%>
                 <div class="col w-full">
                     <div class="block mx-auto card product-card p-2">
-                        <div class="card-image-wrapper">
+                        <div class="modal fade" id="exampleModal<%= product.getProductId()%>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel"><%= product.getProductName()%></h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="col w-full">
+                                            <div class="block mx-auto p-2">
+                                                <div class="card-image-wrapper">
+                                                    <img src="<%= product.getImageUrl()%>" class="card-img-top rounded img-fluid h-100" alt="...">
+                                                </div>
+                                                <div class="pt-2 d-flex flex-column gap-1 bg-body">
+                                                    <h4 class="mt-1 d-inline-block text-truncate"><%= product.getProductName()%></h4>
+                                                    <p class="mt-1 d-inline-block text-truncate"><%= product.getDescription()%></p>
+                                                    <span>Price <%= product.getPrice()%></span>
+                                                    <span><%= product.getQuantity()%> Items Left</span>
+                                                    <div class="d-flex flex-row align-items-center pt-1 gap-2 w-100">
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer d-flex flex-row flex-wrap">
+                                        <a class="btn btn-warning flex-grow-1 fw-semibold" href="BuyNowServlet?product_id=<%= product.getProductId()%>">Buy Now</a>
+                                        <button class="btn btn-outline-warning flex-grow-1">Add To Cart</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-image-wrapper" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal<%= product.getProductId()%>">
                             <img src="<%= product.getImageUrl()%>" class="card-img-top rounded img-fluid h-100" alt="<%= product.getProductName()%>">
                         </div>
                         <div class="pt-2 d-flex flex-column gap-1 bg-body">
                             <h4 class="mt-1 d-inline-block text-truncate"><%= product.getProductName()%></h4>
                             <span>Price <%= product.getPrice()%></span>
+                            <span><%=  product.getQuantity()%> Items Left</span>
                             <div class="d-flex flex-row align-items-center pt-1 gap-2 w-100">
                                 <a class="btn btn-warning flex-grow-1 fw-semibold" href="BuyNowServlet?product_id=<%= product.getProductId()%>">Buy Now</a>
                                 <button class="btn btn-outline-warning flex-grow-1">Add To Cart</button>
@@ -119,21 +153,48 @@
             <% }%>
             <h3 class="mt-2 mt-lg-4">Featured Products</h3>
             <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-2 g-lg-4">
+                <%
+                    String GET_FEATURED_PRODUCTS_STATEMENT = "SELECT * FROM products";
+                    try {
+                        Connection conn;
+                        ResultSet rs = null;
+                        conn = DBConnection.initializeDatabase();
+
+                        PreparedStatement getfeaturedProducts = conn.prepareStatement(GET_FEATURED_PRODUCTS_STATEMENT);
+
+                        rs = getfeaturedProducts.executeQuery();
+
+                        while (rs.next()) {
+                            String productId = rs.getString("product_id");
+                            String name = rs.getString("name");
+                            String imageUrl = rs.getString("image_url");
+                            double price = rs.getDouble("price");
+                            int quantity = rs.getInt("quantity");
+
+                %>
                 <div class="col w-full">
                     <div class="block mx-auto card product-card p-2">
                         <div class="card-image-wrapper">
-                            <img src="./images/iphone.jpg" class="card-img-top rounded img-fluid h-100" alt="...">
+                            <img src="<%= imageUrl%>" class="card-img-top rounded img-fluid h-100" alt="...">
                         </div>
                         <div class="pt-2 d-flex flex-column gap-1 bg-body">
-                            <h4 class="mt-1 d-inline-block text-truncate">Iphone 14 Pro Max</h4>
-                            <span>Price 350000.00</span>
+                            <h4 class="mt-1 d-inline-block text-truncate"><%= name%></h4>
+                            <span>Price <%= price%></span>
+                            <span><%= quantity%> Items Left</span>
                             <div class="d-flex flex-row align-items-center pt-1 gap-2 w-100">
-                                <button class="btn btn-warning flex-grow-1 fw-semibold">Buy Now</button>
+                                <a class="btn btn-warning flex-grow-1 fw-semibold" href="BuyNowServlet?product_id=<%= productId%>">Buy Now</a>
                                 <button class="btn btn-outline-warning flex-grow-1">Add To Cart</button>
                             </div>
                         </div>
                     </div>
                 </div>
+                <% }
+                        conn.close();
+                    } catch (SQLException | NumberFormatException ex) {
+                        out.println(ex.getMessage());
+                        ex.printStackTrace();
+                    }
+                %>
             </div>
         </div>
     </body>
