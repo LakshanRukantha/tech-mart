@@ -3,12 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Lakshan/Projects/Java%20Projects/Java%20Web%20Projects/tech-mart/src/java/techmart/RegisterServlet.java</file>
-            <file>file:/C:/Users/Lakshan/Projects/Java%20Projects/Java%20Web%20Projects/tech-mart/src/java/techmart/DeleteUser.java</file>
-            <file>file:/C:/Users/Lakshan/Projects/Java%20Projects/Java%20Web%20Projects/tech-mart/src/java/techmart/utils/AdminAuth.java</file>
-            <file>file:/C:/Users/Lakshan/Projects/Java%20Projects/Java%20Web%20Projects/tech-mart/web/index.jsp</file>
-            <file>file:/C:/Users/Lakshan/Projects/Java%20Projects/Java%20Web%20Projects/tech-mart/src/java/techmart/utils/UserUtil.java</file>
+            <file>file:/C:/Users/Lakshan/Projects/Java%20Projects/Java%20Web%20Projects/tech-mart/web/js/dashboard.js</file>
+            <file>file:/C:/Users/Lakshan/Projects/Java%20Projects/Java%20Web%20Projects/tech-mart/src/java/techmart/UpdateProductServlet.java</file>
+            <file>file:/C:/Users/Lakshan/Projects/Java%20Projects/Java%20Web%20Projects/tech-mart/web/js/register.js</file>
             <file>file:/C:/Users/Lakshan/Projects/Java%20Projects/Java%20Web%20Projects/tech-mart/web/dashboard.jsp</file>
+            <file>file:/C:/Users/Lakshan/Projects/Java%20Projects/Java%20Web%20Projects/tech-mart/src/java/techmart/CreateProductServlet.java</file>
+            <file>file:/C:/DA%20project/tech-mart/web/about.jsp</file>
         </group>
     </open-files>
 </project-private>

@@ -24,7 +24,7 @@
                     userName = UserUtil.getUserName(userEmail);
                 }
             %>
-            <div class="mt-2" id="createProductMessage"></div>
+            <div class="mt-2" id="messageBox"></div>
             <h2 class="alert alert-secondary d-flex flex-wrap align-items-center justify-content-between">Dashboard <span class="fs-3"><span class="">Welcome, </span><%= userName%></span></h2>
             <div class="row">
                 <div class="col-12 col-lg-8 mb-4">
@@ -37,7 +37,7 @@
                                 <tr>
                                     <th scope="col">Product ID</th>
                                     <th scope="col">Product Name</th>
-                                    <th scope="col">Price</th>
+                                    <th scope="col">Price (LKR)</th>
                                     <th scope="col">Quantity</th>
                                     <th scope="col">Action</th>
                                 </tr>
@@ -54,29 +54,164 @@
                                         while (rs.next()) {
                                             String productId = rs.getString("product_id");
                                             String name = rs.getString("name");
+                                            String description = rs.getString("description");
                                             String price = rs.getString("price");
                                             String quantity = rs.getString("quantity");
                                 %>
                                 <tr>
                                     <td><%= productId%></td>
                                     <td><%= name%></td>
-                                    <td>LKR: <%= price%></td>
-                                    <td><%= quantity%></td>
+                                    <td><%= price%></td>
+                                    <td>
+                                        <% if (Integer.parseInt(quantity) == 0) { %>
+                                        Out Of Stock
+                                        <% } else {%>
+                                        <%= quantity%>
+                                        <% }%>
+                                    </td>
                                     <td class="d-flex flex-row align-items-center gap-2">
-                                        <a href="#" class="btn btn-primary"
-                                           ><i class="fa-regular fa-pen-to-square"></i></a
-                                        ><a href="#" class="btn btn-danger"
-                                            ><i class="fa-regular fa-trash-can"></i
-                                            ></a>
+                                        <button
+                                            type="button"
+                                            class="btn btn-primary"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#staticBackdrop<%= productId%>"
+                                            >
+                                            <i class="fa-regular fa-pen-to-square"></i>
+                                        </button>
+
+                                        <!-- Modal -->
+                                        <div
+                                            class="modal fade"
+                                            id="staticBackdrop<%= productId%>"
+                                            data-bs-backdrop="static"
+                                            data-bs-keyboard="false"
+                                            tabindex="-1"
+                                            aria-labelledby="staticBackdropLabel<%= productId%>"
+                                            aria-hidden="true"
+                                            >
+                                            <div class="modal-dialog">
+                                                <form action="UpdateProductServlet" method="POST">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h1
+                                                                class="modal-title fs-5 text-capitalize"
+                                                                id="staticBackdropLabel<%= productId%>"
+                                                                >
+                                                                <%= name%>
+                                                            </h1>
+                                                            <button
+                                                                type="button"
+                                                                class="btn-close"
+                                                                data-bs-dismiss="modal"
+                                                                aria-label="Close"
+                                                                ></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="mb-3">
+                                                                <label for="productId" class="form-label"
+                                                                       >Product ID</label
+                                                                >
+                                                                <input
+                                                                    type="number"
+                                                                    class="form-control"
+                                                                    name="productId"
+                                                                    value="<%= productId%>"
+                                                                    disabled
+                                                                    />
+                                                                <input
+                                                                    type="number"
+                                                                    id="productId"
+                                                                    name="productId"
+                                                                    value="<%= productId%>"
+                                                                    hidden
+                                                                    />
+                                                                <div id="productIdHelpText" class="form-text">
+                                                                    You can't change the product id here.
+                                                                </div>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="productName" class="form-label"
+                                                                       >Product Name</label
+                                                                >
+                                                                <input
+                                                                    type="text"
+                                                                    class="form-control"
+                                                                    id="productName"
+                                                                    name="productName"
+                                                                    value="<%= name%>"
+                                                                    placeholder="Iphone 15 Pro Max"
+                                                                    />
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label
+                                                                    for="productDescription"
+                                                                    class="form-label"
+                                                                    >Description</label
+                                                                >
+                                                                <textarea
+                                                                    class="form-control"
+                                                                    id="productDescription"
+                                                                    name="productDescription"
+                                                                    rows="3"
+                                                                    placeholder="Enter Product Description..."
+                                                                    ><%= description%></textarea>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="productPrice" class="form-label"
+                                                                       >Price (LKR)</label
+                                                                >
+                                                                <input
+                                                                    type="number"
+                                                                    class="form-control"
+                                                                    id="productPrice"
+                                                                    name="productPrice"
+                                                                    value="<%= price%>"
+                                                                    placeholder="420,000"
+                                                                    />
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="productQuantity" class="form-label"
+                                                                       >Quantity</label
+                                                                >
+                                                                <input
+                                                                    type="number"
+                                                                    class="form-control"
+                                                                    id="productQuantity"
+                                                                    value="<%= quantity%>"
+                                                                    name="productQuantity"
+                                                                    placeholder="25"
+                                                                    />
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button
+                                                                type="button"
+                                                                class="btn btn-secondary"
+                                                                data-bs-dismiss="modal"
+                                                                >
+                                                                Close
+                                                            </button>
+                                                            <button type="submit" class="btn btn-primary">
+                                                                Update
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+
+                                        <a href="DeleteProductServlet?product_id=<%= productId%>" class="btn btn-danger"
+                                           onclick="return confirm('Are you sure you want to delete <%= name%>?');">
+                                            <i class="fa-regular fa-trash-can"></i>
+                                        </a>
                                     </td>
                                 </tr>
-                                <%                                        }
+                                <% }
                                         conn.close();
                                     } catch (SQLException | NumberFormatException ex) {
                                         out.println(ex.getMessage());
                                         ex.printStackTrace();
-                                    }
-                                %>
+                                    } %>
                             </tbody>
                         </table>
                     </div>
@@ -126,8 +261,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="product-category" class="form-label fw-semibold"
-                                   >Product Category</label
-                            >
+                                   >Product Category</label>
                             <select class="form-select" id="productCategory" name="productCategory">
                                 <option selected value="0">Select Category</option>
                                 <%
@@ -185,14 +319,13 @@
                 </div>
             </div>
             <div class="row">
-
                 <!--                <div class="col-12 col-lg-6 mb-4">
-                                    <h1>Active Orders</h1>
-                                    <div class="table-responsive">
+                                            <h1>Active Orders</h1>
+                                            <div class="table-responsive">
 
 
-                                    </div>
-                                </div>-->
+                                            </div>
+                                        </div>-->
                 <div class="col-12 mb-4">
                     <h1>Active Orders</h1>
                     <div class="table-responsive">
@@ -277,7 +410,6 @@
                                 %>
                             </tbody>
                         </table>
-
                     </div>
                 </div>
                 <div class="col-12 mb-4">
@@ -321,7 +453,6 @@
                                            onclick="return confirm('Are you sure you want to delete this user?');">
                                             <i class="fa-regular fa-trash-can"></i>
                                         </a>
-
                                     </td>
                                 </tr>
                                 <%                                        }
@@ -334,7 +465,6 @@
                             </tbody>
                         </table>
                     </div>
-
                 </div>
             </div>
         </div>

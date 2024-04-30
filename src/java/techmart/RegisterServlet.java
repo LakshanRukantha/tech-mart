@@ -79,7 +79,7 @@ public class RegisterServlet extends HttpServlet {
             } else {
                 HttpSession session = request.getSession();
                 session.setAttribute("email", email);
-                session.setMaxInactiveInterval(300);
+                session.setMaxInactiveInterval(86400);
                 response.sendRedirect("index.jsp");
             }
             
