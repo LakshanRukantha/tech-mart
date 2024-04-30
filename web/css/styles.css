@@ -41,3 +41,12 @@ td {
 .sign-in-form, .register-form{
     max-width: 600px;
 }
+
+.product-card{
+    max-width: 280px;
+    width: 100%;
+}
+
+.card-image-wrapper{
+    height: 200px;
+}
