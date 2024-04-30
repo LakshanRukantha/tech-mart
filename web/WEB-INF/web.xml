@@ -28,6 +28,10 @@
         <servlet-name>SignOutServlet</servlet-name>
         <servlet-class>techmart.SignOutServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>BuyNowServlet</servlet-name>
+        <servlet-class>techmart.BuyNowServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegisterServlet</servlet-name>
         <url-pattern>/RegisterServlet</url-pattern>
@@ -55,6 +59,10 @@
     <servlet-mapping>
         <servlet-name>SignOutServlet</servlet-name>
         <url-pattern>/SignOutServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BuyNowServlet</servlet-name>
+        <url-pattern>/BuyNowServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

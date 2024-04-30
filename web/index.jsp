@@ -100,13 +100,13 @@
                 <div class="col w-full">
                     <div class="block mx-auto card product-card p-2">
                         <div class="card-image-wrapper">
-                            <img src="<%= product.imageUrl%>" class="card-img-top rounded img-fluid h-100" alt="<%= product.productName%>">
+                            <img src="<%= product.getImageUrl()%>" class="card-img-top rounded img-fluid h-100" alt="<%= product.getProductName()%>">
                         </div>
                         <div class="pt-2 d-flex flex-column gap-1 bg-body">
-                            <h4 class="mt-1 d-inline-block text-truncate"><%= product.productName%></h4>
-                            <span>Price <%= product.price%></span>
+                            <h4 class="mt-1 d-inline-block text-truncate"><%= product.getProductName()%></h4>
+                            <span>Price <%= product.getPrice()%></span>
                             <div class="d-flex flex-row align-items-center pt-1 gap-2 w-100">
-                                <button class="btn btn-warning flex-grow-1 fw-semibold">Buy Now</button>
+                                <a class="btn btn-warning flex-grow-1 fw-semibold" href="BuyNowServlet?product_id=<%= product.getProductId()%>">Buy Now</a>
                                 <button class="btn btn-outline-warning flex-grow-1">Add To Cart</button>
                             </div>
                         </div>
