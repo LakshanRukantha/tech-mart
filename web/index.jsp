@@ -93,16 +93,18 @@
             <%
                 List<Product> itemList = (List<Product>) request.getAttribute("productList");
             %>
-            <h3 class="mt-2">Search Results</h3>
+            <% if (itemList != null && !itemList.isEmpty()) { %>
+            <h3 class="mt-2 mt-lg-4">Search Results</h3>
             <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-2 g-lg-4">
+                <% for (Product product : itemList) {%>
                 <div class="col w-full">
                     <div class="block mx-auto card product-card p-2">
                         <div class="card-image-wrapper">
-                            <img src="./images/iphone.jpg" class="card-img-top rounded img-fluid h-100" alt="...">
+                            <img src="<%= product.imageUrl%>" class="card-img-top rounded img-fluid h-100" alt="<%= product.productName%>">
                         </div>
                         <div class="pt-2 d-flex flex-column gap-1 bg-body">
-                            <h4 class="mt-1 d-inline-block text-truncate">Iphone 14 Pro Max</h4>
-                            <span>Price 350000.00</span>
+                            <h4 class="mt-1 d-inline-block text-truncate"><%= product.productName%></h4>
+                            <span>Price <%= product.price%></span>
                             <div class="d-flex flex-row align-items-center pt-1 gap-2 w-100">
                                 <button class="btn btn-warning flex-grow-1 fw-semibold">Buy Now</button>
                                 <button class="btn btn-outline-warning flex-grow-1">Add To Cart</button>
@@ -110,8 +112,12 @@
                         </div>
                     </div>
                 </div>
+                <% } %>
             </div>
-            <h3 class="mt-2">Featured Products</h3>
+            <% } else if (request.getParameter("search") != null) { %>
+            <h3 class="mt-2 mt-lg-4">No results found</h3>
+            <% }%>
+            <h3 class="mt-2 mt-lg-4">Featured Products</h3>
             <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-2 g-lg-4">
                 <div class="col w-full">
                     <div class="block mx-auto card product-card p-2">

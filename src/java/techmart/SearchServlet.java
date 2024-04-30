@@ -32,46 +32,43 @@ public class SearchServlet extends HttpServlet {
         if(category.isEmpty() || name.isEmpty()){
             response.sendError(0, "Missing Some Values");
         }
-        // Step 1: Establishing a Connection
+        
         try {
             Connection conn;
             conn = DBConnection.initializeDatabase();
-            // Step 2:Create a statement using connection object
-             PreparedStatement preparedStatement = conn.prepareStatement(SELECT_SEARCH);
-             preparedStatement.setInt(1, category_id);
+            
+            PreparedStatement preparedStatement = conn.prepareStatement(SELECT_SEARCH);
+            preparedStatement.setInt(1, category_id);
             preparedStatement.setString(2, name);
             
-            // Step 3: Execute the query or update query
             ResultSet rs = preparedStatement.executeQuery();
 
             List<Product> productList = new ArrayList<>();
             
             while (rs.next()) {
+                int productId = rs.getInt("product_id");
                 String productName = rs.getString("name");
                 String description = rs.getString("description");
                 String image_url = rs.getString("image_url");
                 String price = rs.getString("price");
+                int quantity = rs.getInt("quantity");
                 
-                Product product = new Product(productName, description, image_url, price);
-    productList.add(product);
+                Product product = new Product(productId, productName, description, image_url, price, quantity);
+                productList.add(product);
             }
             
             request.setAttribute("productList", productList);
-RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
-dispatcher.forward(request, response);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+            dispatcher.forward(request, response);
         } catch (SQLException ex) {
             
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(RegisterServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-    
-
-        //processRequest(request, response);
     }
 
     @Override
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 }
