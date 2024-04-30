@@ -32,6 +32,10 @@
         <servlet-name>BuyNowServlet</servlet-name>
         <servlet-class>techmart.BuyNowServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PlaceOrderServlet</servlet-name>
+        <servlet-class>techmart.PlaceOrderServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegisterServlet</servlet-name>
         <url-pattern>/RegisterServlet</url-pattern>
@@ -63,6 +67,10 @@
     <servlet-mapping>
         <servlet-name>BuyNowServlet</servlet-name>
         <url-pattern>/BuyNowServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PlaceOrderServlet</servlet-name>
+        <url-pattern>/PlaceOrderServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

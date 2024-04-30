@@ -1,97 +1,129 @@
-<%-- 
-    Document   : checkout
-    Created on : Apr 28, 2024, 1:09:03 PM
-    Author     : Sharmila
---%>
-<div style="background-color: transparent;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); 
-            padding: 20px; 
-            width: 500px;  
-            margin: 0 auto" >
-
+<%@page import="techmart.utils.AdminAuth"%>
+<%@page import="techmart.utils.UserUtil"%>
+<%@page import="techmart.Product"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<jsp:include page="./components/headers.jsp" />
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <jsp:include page="./components/headers.jsp" />
+        <title>Checkout</title>
     </head>
     <body>
-        <form
-              class="form mt-3"
-              id="jobPostForm"
-              method="post"
-              action="checkoutservlet">
+        <jsp:include page="./components/navbar.jsp" />
+        <div class="container pt-7">
+            <div class="row mt-2 mt-lg-4">
+                <%
+                    HttpSession userSession = request.getSession();
+                    String userEmail = UserUtil.getUserEmail(userSession);
 
-              <div class="mb-3">
-                  <label for="First-name" class="form-label">Full Name:</label><br>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="FName"
-                  name="FName"
-                  placeholder="Enter your Full Name"
-                  />
-              </div>
-              <!--<div class="mb-3">
-                <label for="Last-name" class="form-label">Last Name:</label><br>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="LName"
-                  name="LName"
-                  placeholder="Enter your Last Name"
-                />
-              </div>  !-->
-              <div class="mb-3">
-                <label for="Email" class="form-label">Email:</label><br>
-                <input
-                  type="email"
-                  class="form-control"
-                  id="Email"
-                  name="Email"
-                  placeholder="you@example.com"
-                />
-              </div>
-              <div class="mb-3">
-                <label for="Address" class="form-label">Address (optional):</label><br>
-                <input
-                  type="Address"
-                  class="form-control"
-                  id="Address"
-                  name="Address"
-                  placeholder="1234; Main Street"
-                />
-              </div>
-          <!--  <div class="mb-3">
-                <label for="Address" class="form-label">Address 2 (optional):</label><br>
-                <input
-                  type="Address2"
-                  class="form-control"
-                  id="Address2"
-                  name="Address2"
-                  placeholder="Apartment or suite"
-                />
-              </div> !-->
-              <div class="mb-3">
-                  <label for="Quantity" class="form-label">Quantity:</label><br>
-                <input
-                  type="number"
-                  class="Quantity"
-                  id="Quantity"
-                  name="Quantity"
-                  min="1"
-                  value="1"
-                  required>
-                
-              </div>
-              <div class="d-grid gap-2">
-                <button class="btn btn-primary" type="submit">Checkout</button>
-                
-              </div>
-            </form>
+                    if (userEmail == null) {
+                        response.sendRedirect("register.jsp");
+                    } else {
 
+                        Product product = (Product) request.getAttribute("product");
+
+                        if (product != null) {
+                %>
+                <div class="col-12 col-md-6 p-2">
+                    <h2>Product Details</h2>
+                    <div class="card d-flex flex-column rounded p-2">
+                        <div>
+                            <span class="fw-semibold fs-3">Product</span>
+                            <p class="fs-4 text-capitalize"><%= product.getProductName()%></p>
+                            <hr>
+                        </div>
+                        <div>
+                            <span class="fw-semibold fs-3">Description</span>
+                            <p><%= product.getDescription()%></p>
+                            <hr>
+                        </div>
+                        <div>
+                            <span class="fw-semibold fs-3">Price</span>
+                            <p><%= product.getPrice()%></p>
+                            <hr>
+                        </div>
+                        <div>
+                            <span class="fw-semibold fs-3">Stocks In Store</span>
+                            <p><%= product.getQuantity()%></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 p-2">
+                    <h2>Order Details</h2>
+                    <div class="mt-2" id="messageBox"></div>
+                    <form
+                        id="orderPlaceForm"
+                        method="POST"
+                        class="card p-2"
+                        >
+                        <div class="mb-3">
+                            <label for="fullName" class="form-label fw-semibold"
+                                   >Full Name</label
+                            >
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="fullName"
+                                name="fullName"
+                                placeholder="Enter your full name..."
+                                />
+                        </div>
+                        <div class="mb-3">
+                            <label for="orderEmail" class="form-label fw-semibold"
+                                   >Email</label
+                            >
+                            <input
+                                type="email"
+                                class="form-control"
+                                id="orderEmail"
+                                name="orderEmail"
+                                placeholder="Enter your email address..."
+                                />
+                        </div>
+                        <div class="mb-3">
+                            <label for="orderAddress" class="form-label fw-semibold"
+                                   >Address</label
+                            >
+                            <textarea
+                                class="form-control"
+                                id="orderAddress"
+                                name="orderAddress"
+                                rows="3"
+                                placeholder="Enter ordering address..."
+                                ></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="quantity" class="form-label fw-semibold">Quantity</label>
+                            <input
+                                type="number"
+                                class="form-control"
+                                id="quantity"
+                                name="quantity"
+                                placeholder="Enter order quantity..."
+                                />
+                        </div>
+                        <input type="number" name="productId" value="<%= product.getProductId()%>" hidden />
+                        <input type="number" name="productPrice" value="<%= product.getPrice()%>" hidden />
+                        <button
+                            type="submit"
+                            class="btn btn-primary w-100 d-flex flex-row align-items-center justify-content-center gap-1"
+                            >
+                            <i class="fa-solid fa-truck-fast"></i>Place Order
+                        </button>
+                    </form>
+                    <div class="card p-2 mt-2 mt-lg-4">
+                        <span class="fs-5 fw-semibold text-secondary">Your order will be delivered in less than 3 working days. Payment can be made upon receipt of your order.</span>
+                    </div>
+                </div>
+                <% } else { %>
+                <div class="alert alert-danger" role="alert">
+                    No product found!
+                </div>
+                <% }
+                    }
+                %>
+            </div>
+        </div>
     </body>
 </html>
-</div>
