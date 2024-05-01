@@ -54,7 +54,7 @@
                             </div>
                             <div class="d-flex flex-md-column w-100 flex-row gap-2">
                                 <a class="btn text-nowrap flex-grow-1 btn-warning fw-semibold" href="BuyNowServlet?product_id=<%= productId%>" >Buy Now</a>
-                                <a class="btn btn-danger flex-grow-1 fw-semibold" href="#" >Remove</a>
+                                <a class="btn btn-danger flex-grow-1 fw-semibold" href="DeleteFromCartServlet?product_id=<%= productId%>" >Remove</a>
                             </div>
                         </div>
                     </div>
