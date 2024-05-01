@@ -388,7 +388,7 @@
                                     <td class="d-flex justify-content-center align-items-center" style="min-height: 100px">
                                         <div class="d-flex justify-content-evenly gap-2 flex-row">
                                             <a
-                                                href="#"
+                                                href="ConfirmOrderShipmentServlet?order_id=<%= orderId%>"
                                                 class="btn btn-primary d-flex flex-row flex-grow-1 align-items-center justify-content-center gap-1"
                                                 ><i class="fa-solid fa-truck-arrow-right"></i>Ship</a
                                             >
