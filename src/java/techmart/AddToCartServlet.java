@@ -19,11 +19,13 @@ public class AddToCartServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession userSession = request.getSession();
+        String userEmail = UserUtil.getUserEmail(userSession);
+
+        if (userEmail != null && !userEmail.isEmpty()) {
         try {
             String ADD_TO_CART_STATEMENT = "INSERT INTO cart(user_email, product_id) VALUES(?,?)";
             String productId = request.getParameter("product_id");
-            HttpSession userSession = request.getSession();
-            String userEmail = UserUtil.getUserEmail(userSession);
             
             Connection conn = DBConnection.initializeDatabase();
             
@@ -39,6 +41,9 @@ public class AddToCartServlet extends HttpServlet {
             Logger.getLogger(AddToCartServlet.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(AddToCartServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }else{
+            response.sendRedirect(request.getContextPath() + "/signin.jsp");
         }
     }
 
