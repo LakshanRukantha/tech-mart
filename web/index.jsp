@@ -140,7 +140,7 @@
                                     </div>
                                     <div class="modal-footer d-flex flex-row flex-wrap">
                                         <a class="btn btn-warning flex-grow-1 fw-semibold <%= (product.getQuantity() == 0) ? "disabled" : ""%>" href="<%= (product.getQuantity() != 0) ? "BuyNowServlet?product_id=" + product.getProductId() : "#"%>" <% if (product.getQuantity() == 0) { %> style="pointer-events: none;" <% }%>>Buy Now</a>
-                                        <button class="btn btn-outline-warning flex-grow-1">Add To Cart</button>
+                                        <a class="btn btn-outline-warning flex-grow-1" href="AddToCartServlet?product_id=<%= product.getProductId()%>">Add To Cart</a>
                                     </div>
                                 </div>
                             </div>
