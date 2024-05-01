@@ -13,7 +13,6 @@
     <body>
         <jsp:include page="./components/navbar.jsp" />
         <div class="container pt-7">
-
             <h2 class="mt-2 mt-lg-3">Your Cart</h2>
             <div class="row g-2 mt-1 mt-lg-2">
                 <%
