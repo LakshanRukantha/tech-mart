@@ -141,7 +141,7 @@
                             <span><%=  product.getQuantity()%> Items Left</span>
                             <div class="d-flex flex-row align-items-center pt-1 gap-2 w-100">
                                 <a class="btn btn-warning flex-grow-1 fw-semibold" href="BuyNowServlet?product_id=<%= product.getProductId()%>">Buy Now</a>
-                                <button class="btn btn-outline-warning flex-grow-1">Add To Cart</button>
+                                <a class="btn btn-outline-warning flex-grow-1" href="AddToCartServlet?product_id=<%= product.getProductId()%>">Add To Cart</a>
                             </div>
                         </div>
                     </div>

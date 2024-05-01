@@ -36,6 +36,14 @@
         <servlet-name>PlaceOrderServlet</servlet-name>
         <servlet-class>techmart.PlaceOrderServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddToCartServlet</servlet-name>
+        <servlet-class>techmart.AddToCartServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteFromCartServlet</servlet-name>
+        <servlet-class>techmart.DeleteFromCartServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegisterServlet</servlet-name>
         <url-pattern>/RegisterServlet</url-pattern>
@@ -71,6 +79,14 @@
     <servlet-mapping>
         <servlet-name>PlaceOrderServlet</servlet-name>
         <url-pattern>/PlaceOrderServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddToCartServlet</servlet-name>
+        <url-pattern>/AddToCartServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteFromCartServlet</servlet-name>
+        <url-pattern>/DeleteFromCartServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
