@@ -1,53 +1,75 @@
+<%@page import="techmart.utils.AdminAuth"%>
+<%@page import="techmart.utils.UserUtil"%>
+<%@page import="java.sql.*"%>
+<%@page import="techmart.utils.DBConnection"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-            <jsp:include page="./components/headers.jsp" />
-        <title>Cart | TechMart</title>
+        <jsp:include page="./components/headers.jsp" />
+        <title>Cart</title>
     </head>
     <body>
-        <div class="container">
-          <div class="card p-4">
-              <div class="card-header p-4">
-            <h2>Your Cart</h2>
-              </div>
-              <div class="card-body p-4" style=" height: 200px;">
-            <div class="max-w-sm">
-                <div class="bg-body row">
-                    <div class="col-8 d-flex">
-                        <img class="align-self-center mr-3" src="images/123.jpg" style="width: 130px; height: 130px; margin-right: 10px;"/>
-                        <div>
-                            <h3>Product Name</h3>
-                            <span>magna ac placerat vestibulum lectus mauris ultrices eros in cursus turpis massa tincidunt dui ut ornare lectus sit amet est placerat in egestas erat imperdiet sed euismod nisi porta lorem</span><br
-                            <span>Price: LKR 4500</span>
+        <jsp:include page="./components/navbar.jsp" />
+        <div class="container pt-7">
+
+            <h2 class="mt-2 mt-lg-3">Your Cart</h2>
+            <div class="row g-2 mt-1 mt-lg-2">
+                <%
+                    HttpSession userSession = request.getSession();
+                    String userEmail = UserUtil.getUserEmail(userSession);
+
+                    String GET_PRODUCT_IDS = "SELECT product_id FROM cart WHERE user_email=?";
+                    String GET_PRODUCT_INFO = "SELECT name, description, price, image_url FROM products WHERE product_id=?";
+
+                    try {
+                        Connection conn;
+                        ResultSet rsProductIds = null;
+                        ResultSet rsProductInfo = null;
+                        conn = DBConnection.initializeDatabase();
+
+                        PreparedStatement getProductIds = conn.prepareStatement(GET_PRODUCT_IDS);
+                        getProductIds.setString(1, userEmail);
+                        rsProductIds = getProductIds.executeQuery();
+
+                        while (rsProductIds.next()) {
+                            int productId = rsProductIds.getInt("product_id");
+
+                            PreparedStatement getProductInfo = conn.prepareStatement(GET_PRODUCT_INFO);
+                            getProductInfo.setInt(1, productId);
+                            rsProductInfo = getProductInfo.executeQuery();
+
+                            if (rsProductInfo.next()) {
+                                String productName = rsProductInfo.getString("name");
+                                double price = rsProductInfo.getDouble("price");
+                                String imageUrl = rsProductInfo.getString("image_url");
+                %>
+                <div class="col-12 col-lg-6 p-2">
+                    <div class="card p-2 p-lg-3 d-flex gap-2 flex-row overflow-hidden">
+                        <div class="h-full"><img class="cart-image img-fluid rounded" src="<%= imageUrl%>" alt="<%= productName%>"/></div>
+                        <div class="d-flex flex-column flex-grow-1 flex-md-row align-items-center">
+                            <div class="d-flex w-100 flex-column">
+                                <span class="fs-4 fw-semibold text-truncate"><%= productName%></span>
+                                <span class="fs-5">Price <%= price%></span>
+                            </div>
+                            <div class="d-flex flex-md-column w-100 flex-row gap-2">
+                                <a class="btn text-nowrap flex-grow-1 btn-warning fw-semibold" href="BuyNowServlet?product_id=<%= productId%>" >Buy Now</a>
+                                <a class="btn btn-danger flex-grow-1 fw-semibold" href="#" >Remove</a>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-4 d-flex align-items-center">
-                        <a href="" class="btn btn-primary">Checkout</a>&nbsp;
-                        <a href="" class="btn btn-primary">Remove</a>
-                        
-                    </div>
                 </div>
-            </div>            
+                <%
+                            }
+                        }
+                        conn.close();
+                    } catch (SQLException | NumberFormatException ex) {
+                        out.println(ex.getMessage());
+                        ex.printStackTrace();
+                    }
+                %>
+            </div>
         </div>
-              <div class="card-body p-4" style=" height: 250px;">
-            <div class="max-w-sm">
-                <div class="bg-body row">
-                    <div class="col-8 d-flex">
-                        <img class="align-self-center mr-3" src="images/123.jpg" style="width: 130px; height: 130px; margin-right: 10px;"/>
-                        <div>
-                            <h3>Product Name</h3>
-                            <span>magna ac placerat vestibulum lectus mauris ultrices eros in cursus turpis massa tincidunt dui ut ornare lectus sit amet est placerat in egestas erat imperdiet sed euismod nisi porta lorem</span><br
-                            <span>Price: LKR 4500</span>
-                        </div>
-                    </div>
-                    <div class="col-4 d-flex align-items-center">
-                        <a href="" class="btn btn-primary">Checkout</a>&nbsp;
-                        <a href="" class="btn btn-primary">Remove</a>
-                        
-                    </div>
-                </div>
-            </div>            
-              </div>
     </body>
+</html>

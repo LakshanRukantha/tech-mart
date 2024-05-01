@@ -50,3 +50,10 @@ td {
 .card-image-wrapper{
     height: 200px;
 }
+
+.cart-image{
+    max-width: 150px;
+    min-width: 100px;
+    height: 100%;
+    width: 100%;
+}
