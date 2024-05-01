@@ -393,7 +393,7 @@
                                                 ><i class="fa-solid fa-truck-arrow-right"></i>Ship</a
                                             >
                                             <a
-                                                href="#"
+                                                href="CancelOrderServlet?order_id=<%= orderId%>"
                                                 class="btn btn-danger d-flex flex-row flex-grow-1 align-items-center justify-content-center gap-1"
                                                 ><i class="fa-solid fa-trash-can"></i>Cancel</a
                                             >
