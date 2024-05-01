@@ -3,6 +3,7 @@ package techmart;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -24,14 +25,16 @@ public class PlaceOrderServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String PLACE_ORDER_STATEMENT = "INSERT INTO orders (product_id, ordering_email, user_email, quantity, price, address, name) VALUES (?, ?, ?, ?, ?, ?, ?)";
-        
+        String GET_PRODUCT_STOCK_COUNT = "SELECT quantity FROM products WHERE product_id = ?";
+        String REDUCE_ITEM_STATEMENT = "UPDATE products SET quantity = ? WHERE product_id = ?";
+
         PrintWriter pw = response.getWriter();
         HttpSession userSession = request.getSession();
         String userEmail = UserUtil.getUserEmail(userSession);
-        if(userEmail != null || !userEmail.isEmpty()){
+        if (userEmail != null && !userEmail.isEmpty()) {
             try {
                 Connection conn = DBConnection.initializeDatabase();
-                
+
                 int productId = Integer.parseInt(request.getParameter("productId"));
                 String fullName = request.getParameter("fullName");
                 String orderEmail = request.getParameter("orderEmail");
@@ -39,7 +42,24 @@ public class PlaceOrderServlet extends HttpServlet {
                 int quantity = Integer.parseInt(request.getParameter("quantity"));
                 double productPrice = Double.parseDouble(request.getParameter("productPrice"));
                 double price = quantity * productPrice;
-                
+
+                // Check product stock availability
+                PreparedStatement getProductStockCountStmt = conn.prepareStatement(GET_PRODUCT_STOCK_COUNT);
+                getProductStockCountStmt.setInt(1, productId);
+                ResultSet rs = getProductStockCountStmt.executeQuery();
+
+                int currentStock = 0;
+                if (rs.next()) {
+                    currentStock = rs.getInt("quantity");
+                }
+
+                if (quantity > currentStock) {
+                    response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+                    pw.println("Error: Insufficient stock!");
+                    return;
+                }
+
+                // Proceed with order placement
                 PreparedStatement placeOrderStmt = conn.prepareStatement(PLACE_ORDER_STATEMENT);
                 placeOrderStmt.setInt(1, productId);
                 placeOrderStmt.setString(2, orderEmail);
@@ -48,25 +68,29 @@ public class PlaceOrderServlet extends HttpServlet {
                 placeOrderStmt.setDouble(5, price);
                 placeOrderStmt.setString(6, orderAddress);
                 placeOrderStmt.setString(7, fullName);
-                
+
                 int count = placeOrderStmt.executeUpdate();
-            
-            if(count<=0){
-                response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-                response.getWriter().println("Error: Order failed please try again later!");
-                return;
-            }else{
-                pw.write("Order placed successfully!");
-            }
-                
-//                response.sendRedirect("index.jsp");
-                
+
+                if (count <= 0) {
+                    response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+                    pw.println("Error: Order failed please try again later!");
+                    return;
+                }
+                pw.println("Order placed successfully!");
+                // Reduce stock count
+                int newStock = currentStock - quantity;
+                PreparedStatement reduceItemStmt = conn.prepareStatement(REDUCE_ITEM_STATEMENT);
+                reduceItemStmt.setInt(1, newStock);
+                reduceItemStmt.setInt(2, productId);
+                reduceItemStmt.executeUpdate();
+
+                conn.close();
             } catch (SQLException ex) {
                 Logger.getLogger(PlaceOrderServlet.class.getName()).log(Level.SEVERE, null, ex);
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(PlaceOrderServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }else{
+        } else {
             response.sendRedirect("register.jsp");
         }
     }
