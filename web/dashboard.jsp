@@ -468,5 +468,6 @@
                 </div>
             </div>
         </div>
+        <jsp:include page="./components/footer.jsp" />
     </body>
 </html>
